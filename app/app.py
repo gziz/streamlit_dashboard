@@ -1,7 +1,7 @@
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
-#from azure_blob_reader import load_data_from_azure
+from azure_blob_reader import load_data_from_azure
 import pandas as pd
 import numpy as np
 import pickle
@@ -91,8 +91,6 @@ def dashboard_canceled():
             xaxis={"categoryorder": "array", "categoryarray": cluster_order},
         )
         figs_values[col] = fig
-
-    st.set_page_config(page_title="Análisis de Reservaciones de Hotel")
 
     st.title("Dashboard de Análisis de Reservaciones de Hotel")
 
