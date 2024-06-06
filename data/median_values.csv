@@ -1,0 +1,5 @@
+cluster_name,h_num_per,h_num_adu,h_num_men,h_num_noc,h_tot_hab,h_tfa_total,lead_time,rate_per_night,ID_Agencia,cluster,cancelled,no_show,ID_canal
+Escapada,2.0,2.0,0.0,3.0,1.0,7437.0,30.0,2878.4,86.0,1.0,0.0,0.0,1.0
+Familias,3.0,3.0,0.0,3.0,1.0,7800.03,44.0,3347.0,99.0,2.0,0.0,0.0,4.0
+Grupos,4.0,3.0,0.0,4.0,2.0,3059.0,107.0,871.4300000000001,112.0,3.0,1.0,0.0,10.0
+Lujo,2.0,2.0,0.0,3.0,1.0,7674.0,228.0,2910.0,93.0,0.0,0.0,0.0,4.0
