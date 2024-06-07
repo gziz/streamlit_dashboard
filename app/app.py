@@ -84,7 +84,7 @@ def dashboard_canceled():
             )
         )
         fig.update_layout(
-            title=f"Valores Medios y Medianos de {variable_labels[col]} por Clúster",
+            title=f"{variable_labels[col]} ",
             xaxis_title="Clúster",
             yaxis_title="Valor",
             barmode="group",
@@ -92,21 +92,20 @@ def dashboard_canceled():
         )
         figs_values[col] = fig
 
-    st.title("Dashboard de Análisis de Reservaciones de Hotel")
+    st.title("Análisis de Reservaciones (Cancelaciones)")
 
-    st.subheader("Porcentaje de Cancelaciones por Clúster")
     st.plotly_chart(fig_cancellations)
 
     st.plotly_chart(fig_agencia)
     st.plotly_chart(fig_canal)
 
-    st.subheader("Valores Medios y Medianos de Columnas Numéricas por Clúster")
+    st.subheader("Media y Mediana de Columnas Numéricas por Clúster")
     for col, fig in figs_values.items():
         st.plotly_chart(fig)
 
 
 def dashboard_loyalty(model):
-  
+    st.title("Análisis de Reservaciones (Loyalty)")
     data_path = 'data/'
     cluster_order = ['Clúster 1', 'Clúster 2', 'Clúster 3', 'Clúster 4']
 
@@ -165,14 +164,14 @@ def dashboard_loyalty(model):
             df_loyalty_mean, 
             x='cluster', 
             y='h_tfa_total',
-            title='Media de tarífa total',
-            labels={'mean': 'Media de tarífa total', 'cluster_name': 'Clúster'},
+            title='Media de tarifa total',
+            labels={'mean': 'Media de tarifa total', 'cluster_name': 'Clúster'},
             category_orders={'cluster': cluster_order}
         )
     st.plotly_chart(fig_tfa)
 
     
-    st.subheader('Agrupación por moda, varaibles categóricas:')
+    st.subheader('Agrupación por moda, variables categóricas:')
     df_loyalty_mode = df_loyalty[[
             'cluster', 'loyalty', 'ID_canal', 'ID_Agencia', 'h_fec_reg_day', 'h_fec_reg_month',
             'h_fec_lld_day', 'h_fec_lld_month', 'is_canceled'
@@ -193,11 +192,11 @@ if __name__ == "__main__":
     with open('models/gmm_model.pkl', 'rb') as f:
         gmm_loyalty = pickle.load(f)
 
-    page = st.sidebar.selectbox("Tipo de cluster", ("Home", "Lealtad", "Cancelaciones"))
+    page = st.sidebar.selectbox("Tipo de cluster", ("Cancelaciones", "Lealtad"))
     
     if page == "Cancelaciones":
         dashboard_canceled()
     elif page == 'Lealtad':
         dashboard_loyalty(gmm_loyalty)
     else:
-        st.title("Análisis de Reservaciones de Hotel")
+        st.title("Análisis de Reservaciones")
